@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>FormData: construir, iterar y (opcional) enviar</title>
+  <link rel="stylesheet" href="../styles.css"/>
+</head>
+<body>
+  <h1>FormData: construir, iterar y (opcional) enviar</h1>
+  <p class="small">Abrí la consola (F12) para ver las solicitudes. Editá <code>script.js</code> y recargá.</p>
+  <div class="card"><form id="f" class="grid">
+  <label>Nombre <input name="nombre" required></label>
+  <label>Email <input name="email" type="email" required></label>
+  <label>Archivo (opcional) <input name="archivo" type="file"></label>
+  <button>Enviar</button>
+</form>
+<p class="small">Mostrá el contenido del FormData en pantalla.</p></div>
+  <script type="module" src="./script.js"></script>
+</body>
+</html>

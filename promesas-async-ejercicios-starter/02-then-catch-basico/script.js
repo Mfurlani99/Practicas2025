@@ -13,3 +13,31 @@ import { delay } from "../utils/delay.js";
 //   (por ejemplo 0), y luego un .then() más que loguee el valor final (recuperado o no).
 
 console.log("Completá la cadena de then() y el manejo de error al final.");
+
+
+import { delay } from "../utils/delay.js";
+
+const promise2 = delay(400).then(() => 5);
+
+promise2
+  .then(x => {
+    console.log(x);       // 5
+    return x * 2;         // 10
+  })
+  .then(x => {
+    console.log(x);       // 10
+    return x + 10;        // 20
+  })
+  .then(x => {
+    console.log(x);       // 20
+    if (x > 18) throw new Error("límite sobrepasado");
+    return x;             // (propaga el valor si no hay error)
+  })
+  .catch(err => {
+    const msg = err?.message ?? String(err);
+    console.error("rejected:", msg);
+    return 0;             // valor de recuperación
+  })
+  .then(final => {
+    console.log(final);   // 0 (o el valor final si no hubo error)
+  });
