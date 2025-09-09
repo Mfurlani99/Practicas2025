@@ -16,3 +16,21 @@ import { delay } from "../utils/delay.js";
 // Observá cómo cambia el flujo.
 
 console.log("Probá ambas estrategias y analizá qué se ejecuta.");
+
+const myPromise = new Promise((resolve, reject) => {
+ setTimeout(() => {
+ resolve("start");
+ }, 300);
+});
+
+myPromise
+  .then(v => v + "-A")                          // → "start-A"
+  .then(() => { throw new Error("falló B"); })  // lanza error
+  .then(v => v + "-C")                          // nunca se ejecuta
+  .catch(error => {
+    console.error("Se produjo un error:", error.message); // "falló B"
+    return "RECUPERADO"; // recupera el flujo
+  })
+  .then(result => console.log("Resultado final:", result));
+
+
