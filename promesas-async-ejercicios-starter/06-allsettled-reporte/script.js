@@ -52,3 +52,4 @@ console.log(results),
 console.log(resultadosOk),
 console.log(rejected)
 );
+
