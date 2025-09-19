@@ -12,3 +12,25 @@ import { delay } from "../utils/delay.js";
 // TODO 3: usá Promise.any() con 3 promesas donde 2 fallen y 1 resuelva, verificá el valor obtenido.
 
 console.log("Construí timeout() y probalo con race/any.");
+
+
+const p1 = (async () => { await delay(700); return "P1"; })();
+const p2 = (async () => { await delay(800); return "P2"; })();
+const p3 = (async () => { await delay(600); return "P3"; })();
+
+const p4 = new Promise((resolve, reject) => {
+  setTimeout(reject, 500, "la promesa 4 fue rechazada por exceso de facha");
+});
+const p5 = new Promise((resolve, reject) => {
+  setTimeout(reject, 400, "la promesa 5 fue rechazada por exceso de facha");
+});
+
+
+
+Promise.race([p1, p2,p3 , p4]).then((value) => {
+  console.log("la primera en terminar: " + value);
+});
+
+Promise.any([p1, p2 , p4]).then((value) => {
+  console.log("la primera cumplida: " + value);
+});

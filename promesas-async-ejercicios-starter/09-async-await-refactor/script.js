@@ -15,3 +15,39 @@ const stepC = async () => { await delay(250); return "C"; };
 //   - Proponé además una versión que ejecute A y C en paralelo una vez completado B (si B no falla).
 
 console.log("Escribí flujo() con async/await.");
+
+
+async function usarAsyncAwait() {
+  try {
+    const data = await stepA();
+    const data2 = await stepB();
+    const data3 = await stepC();
+    console.log("Con async/await:", data ,data2 , data3);
+  } catch (err) {
+    console.error("Error con async/await:", err.message);
+  } finally {
+    console.log("Terminó el async/await");
+  }
+}
+
+usarAsyncAwait();
+
+async function flujo() {
+    const aray = []
+    try {
+     const data = await stepA();   
+     const data2 = await stepB();
+     const data3 = await stepC();
+     aray.push(data,data2,data3)
+     console.log(aray);
+    } catch (err) {
+        aray.push(err)
+        console.error("Error con async/await:", err.message);
+        console.log(aray);
+        
+    }finally {
+    console.log("fin de flujo");
+  }
+}
+
+flujo()
